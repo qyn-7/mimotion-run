@@ -37,30 +37,17 @@ class MiMotion():
             error_traceback = traceback.format_exc()
             print(error_traceback)
 
-
     # 推送telegram
-    def push_telegram(self, msg):
+    def push_telegram(self,msg):
         try:
-            print("
-Telegram 推送开始")
-            title = "【小米运动步数修改】"
-            content = msg
-            send_data = {
-                "chat_id": tg_user_id,
-                "text": title + '
-
-' + content,
-                "disable_web_page_preview": True
-            }
+            print("\nTelegram 推送开始")
+            send_data = {"chat_id": tg_user_id, "text": title + '\n\n'+content, "disable_web_page_preview": "true"}
             response = requests.post(
-                url=f'https://api.telegram.org/bot{tg_bot_token}/sendMessage',
-                data=send_data
-            )
+                url=f'https://api.telegram.org/bot{tg_bot_token}/sendMessage', data=send_data)
             print(response.json()['ok'])
         except Exception as e:
             error_traceback = traceback.format_exc()
             print(error_traceback)
-
 
     # 企业微信
     def get_access_token(self):
